@@ -1,5 +1,5 @@
 <div align="center">
-  <img src=https://github.com/iNihilistx/ReverseShellGUI/assets/64751372/bd56664a-d76f-4de5-91b4-dc86ddb18498 title="Logo Generated using Bing AI" width=350 height=300/>
+  <img src=https://i.ibb.co/RY7xzzT/287566524-bd56664a-d76f-4de5-91b4-dc86ddb18498.jpg title="Logo Generated using Bing AI" width=350 height=300/>
   <h1><b>RascalShell</b></h1>
 </div>
 
@@ -70,12 +70,10 @@ By using this software, you acknowledge that you have read, understood, and agre
 1. Navigate to the project directory: `example: cd app/ReverseShellGUI`
 2. Open terminal in directory
 3. Start the host using the command: `python3 portal.py` - `python portal.py`
-<img src="https://github.com/iNihilistx/ReverseShellGUI/assets/64751372/c84a10c9-612a-4778-8a73-8fd10d7dbcdd" width=550 height=350/>
-<img src="https://github.com/iNihilistx/ReverseShellGUI/assets/64751372/a6835899-4a1f-4a33-a791-4fb8c0f0296d"/>
-<img src="https://github.com/iNihilistx/ReverseShellGUI/assets/64751372/286c264e-24b1-409e-9671-646f0d23ac9d"/>
-<img src="https://github.com/iNihilistx/ReverseShellGUI/assets/64751372/afa9f543-92ac-408e-8957-7a399f457ca0"/>
-
-
+<img src="https://i.ibb.co/x1qcscc/302069193-c84a10c9-612a-4778-8a73-8fd10d7dbcdd.png" width=550 height=350/>
+<img src="https://i.ibb.co/KsqqB4f/302840495-a6835899-4a1f-4a33-a791-4fb8c0f0296d.png"/>
+<img src="https://i.ibb.co/8M4kCht/302840970-286c264e-24b1-409e-9671-646f0d23ac9d.png"/><br>
+<img src="https://i.ibb.co/jJ7vwrc/302069839-afa9f543-92ac-408e-8957-7a399f457ca0.gif"/>
 
 #### Client CLI:
 1. Navigate to the project directory: `example: cd app/ReverseShellGUI`
@@ -87,9 +85,8 @@ By using this software, you acknowledge that you have read, understood, and agre
 2. Open terminal in directory
 3. start the client using the command `python3 portal.py` - `python portal.py`
 5. After entering server details (IP and PORT). The window will redirect you to the connected page where you can see incoming an outbound commands
-<img src="https://github.com/iNihilistx/ReverseShellGUI/assets/64751372/b7ee5f7f-4900-4b14-a1ab-219446712e0d" width=550 height=350>
-<img src="https://github.com/iNihilistx/ReverseShellGUI/assets/64751372/549d8198-6950-45a9-a0a3-5a96c78c3fd7" width=550 height=350>
-
+<img src="https://i.ibb.co/chjkwfC/302069290-b7ee5f7f-4900-4b14-a1ab-219446712e0d.png" width=550 height=350>
+<img src="https://i.ibb.co/Jzj5BCz/302069307-549d8198-6950-45a9-a0a3-5a96c78c3fd7.png" width=550 height=350>
 
 ## Tools Used
 
