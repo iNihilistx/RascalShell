@@ -49,7 +49,7 @@ class ClientNetwork(customtkinter.CTkFrame):
 
         for line in decrypted_data.splitlines():
             data = line.rstrip()
-            self.ip, self.port = data.split("|")
+            self.ip, self.port, self.image_port = data.split("|")
 
     def client_socket(self):
         self.get_server()

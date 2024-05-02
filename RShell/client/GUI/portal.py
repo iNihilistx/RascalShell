@@ -4,6 +4,7 @@ from PIL import Image, ImageTk
 import signal
 from cryptography.fernet import Fernet
 import os
+import sys
 
 class clientLogin(customtkinter.CTk):
     def __init__(self, *args, **kwargs):
@@ -38,9 +39,12 @@ class clientLogin(customtkinter.CTk):
         
         self.server_port = customtkinter.CTkEntry(self.logo_frame, placeholder_text="Port Number...", font=("", 14), placeholder_text_color="black", text_color="black", fg_color="#f3f1f0", height=30, corner_radius=7)
         self.server_port.grid(row=3, column=0, sticky="nsew", padx=30, pady=20)
+
+        self.image_port = customtkinter.CTkEntry(self.logo_frame, placeholder_text="Image Port Number...", font=("", 14), placeholder_text_color="black", text_color="black", fg_color="#f3f1f0", height=30, corner_radius=7)
+        self.image_port.grid(row=4, column=0, sticky="nsew", padx=30, pady=1)
         
         self.connect_button = customtkinter.CTkButton(self.logo_frame, text="Connect", height=40, width=150, font=("", 14, "bold"), corner_radius=9, fg_color="#AE0BE7", hover_color="#C12DF5", command=self.connect_window)
-        self.connect_button.grid(row=4, column=0, sticky="nsew", padx=35, pady=20)
+        self.connect_button.grid(row=5, column=0, sticky="nsew", padx=35, pady=20)
         
         self.clientWindow = None
 
@@ -50,10 +54,10 @@ class clientLogin(customtkinter.CTk):
         file.close()
         return key
     
-    def encrypt_server_details(self, server_ip, server_port):
+    def encrypt_server_details(self, server_ip, server_port, image_port):
         key = self.load_key()
         cipher = Fernet(key)
-        encrypted_data = cipher.encrypt(f"{server_ip}|{server_port}".encode())
+        encrypted_data = cipher.encrypt(f"{server_ip}|{server_port}|{image_port}".encode())
 
         with open("server.txt", "wb") as server_details:
             server_details.write(encrypted_data)
@@ -61,12 +65,14 @@ class clientLogin(customtkinter.CTk):
     def connect_window(self):
         self.server_ip = self.server_ip_address.get()
         self.server_port = int(self.server_port.get())
+        self.s_image_port = int(self.image_port.get())
 
-        self.encrypt_server_details(self.server_ip, self.server_port)
+        self.encrypt_server_details(self.server_ip, self.server_port, self.s_image_port)
 
         if self.clientWindow is None or not self.clientWindow.winfo_exists():
+            python_command = sys.executable
             self.destroy()
-            self.run = subprocess.Popen(['python', 'client.py'])
+            self.run = subprocess.Popen([python_command, 'client.py'])
 
     def on_exit(self):
         self.destroy()

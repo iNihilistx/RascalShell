@@ -119,12 +119,13 @@ class CommandFrame(customtkinter.CTkFrame):
         self.client_connection = None
         self.client_address = None
         self.thread = None
+        self.client_connections = []
 
         thread = threading.Thread(target=self.handle_client)
         thread.start()
 
         self.commandReceiver = customtkinter.CTkTextbox(self, width=2500, height=400, text_color="white", fg_color="#1F1F1F", border_width=1, border_color="gray30")
-        self.commandReceiver.grid(row=1, column=0, sticky="w", padx=10, pady=10)
+        self.commandReceiver.grid(row=2, column=0, sticky="w", padx=10, pady=10)
 
         self.commandSender = customtkinter.CTkEntry(
             self,
@@ -136,8 +137,11 @@ class CommandFrame(customtkinter.CTkFrame):
             border_width=1,
             placeholder_text="Enter Command..."
         )
-        self.commandSender.grid(row=2, column=0, sticky="w", padx=10, pady=10)
+        self.commandSender.grid(row=3, column=0, sticky="w", padx=10, pady=10)
         self.commandSender.bind("<Return>", self.send_command)
+
+        self.userCountLabel = customtkinter.CTkLabel(self, text="Connected Users: 0/1")
+        self.userCountLabel.grid(row=1, column=0, pady=3)
         
     def send_command(self, event):
         threading.Thread(target=self.image_receiver, daemon=True).start()
@@ -170,8 +174,10 @@ class CommandFrame(customtkinter.CTkFrame):
             try:
                 self.client_conn, self.client_addr = self.server.accept()
                 self.server.settimeout(None)  # Reset the timeout after accepting the connection
+                self.client_connections.append(self.client_conn)
+                self.update_user_count()
 
-                uoutput = f"[+] {self.client_addr} ~ Established a Connection!\n"
+                uoutput = f"[+] {self.client_addr} ~ Established a Connection!"
                 self.commandReceiver.insert("end", f"{uoutput}\n")
                 print(uoutput)
 
@@ -188,12 +194,20 @@ class CommandFrame(customtkinter.CTkFrame):
                         self.commandReceiver.update()
                     except:
                         break
+                self.client_connections.remove(self.client_conn)
+                self.update_user_count()
+                disconnected_ip = self.client_addr[0]
+                self.commandReceiver.insert("end", f"[!] {disconnected_ip} ~ Disconnected from RShell!\n")
                 self.client_conn.close()
             except socket.timeout:
                 pass  # Continue the loop if the timeout occurs
             except Exception as e:
                 print(f"Error Communicating: {e}")
                 break
+    
+    def update_user_count(self):
+        count = len(self.client_connections) #update UI with number of connected users
+        self.userCountLabel.configure(text=f"Connected Users: {count}/1")
 
     def on_exit(self):
         if self.thread:
@@ -214,7 +228,7 @@ class ReverseShell(customtkinter.CTk):
         self.ipaddr = socket.gethostbyname(self.hostname)
 
         self.title(f"Server Host: [{self.ipaddr} ~ {self.hostname}]")
-        self.geometry("1200x560")
+        self.geometry("1200x595")
         self._set_appearance_mode("dark")
         self.resizable(False, False)
 

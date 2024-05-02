@@ -3,7 +3,7 @@ import io
 from PIL import Image
 
 def receive_image():
-    host = "192.168.0.26"
+    host = "10.42.0.214"
     port = 8081
     BUFFER_SIZE = 4096
 
