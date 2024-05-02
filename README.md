@@ -70,7 +70,8 @@ By using this software, you acknowledge that you have read, understood, and agre
 1. Navigate to the project directory: `example: cd app/ReverseShellGUI`
 2. Open terminal in directory
 3. Start the host using the command: `python3 portal.py` - `python portal.py`
-4. default user/pass: admin
+4. default user/pass: rascal
+5. run pwdchange.py to change the password for the application.
 <img src="https://i.ibb.co/x1qcscc/302069193-c84a10c9-612a-4778-8a73-8fd10d7dbcdd.png" width=550 height=350/>
 <img src="https://i.ibb.co/KsqqB4f/302840495-a6835899-4a1f-4a33-a791-4fb8c0f0296d.png"/>
 <img src="https://i.ibb.co/8M4kCht/302840970-286c264e-24b1-409e-9671-646f0d23ac9d.png"/><br>
