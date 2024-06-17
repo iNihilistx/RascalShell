@@ -11,7 +11,7 @@ class EntryForm(customtkinter.CTk):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        customtkinter.set_default_color_theme("blue")
+        customtkinter.set_default_color_theme("green")
         customtkinter.set_appearance_mode("dark")
 
         self.protocol("WM_DELETE_WINDOW", self.on_exit) # uses built in window manager to detect a close event then call the closing function
