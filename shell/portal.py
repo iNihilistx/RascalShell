@@ -19,7 +19,7 @@ class EntryForm(customtkinter.CTk):
         #signal.signal(signal.SIGCHLD, self.on_exit) #sigchild is sent to the parent process when a child process terminates, specifies that the on_exit should get called
         
         self.geometry("680x400")
-        self.title("RascalShell: Adin Portal")
+        self.title("RascalShell: Admin Portal")
         self.resizable(False, False)
 
         IMAGE_PATH = 'RLogo.jpg'
