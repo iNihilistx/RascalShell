@@ -1,7 +1,9 @@
 import os
 import shutil
+import subprocess
 import requests
 import zipfile
+import time
 
 # Function to delete a directory and all its contents
 def delete_directory(directory):
@@ -24,23 +26,22 @@ def download_extract_latest_release(owner, repo):
     response = requests.get(url)
     response.raise_for_status()  # Raise an error for bad status codes
 
+    # Save the zip file to a temporary location
     temp_dir = 'temp_directory'
-    create_directory(temp_dir)
-
+    create_directory(temp_dir)  # Create temp directory if it doesn't exist
     zip_file = os.path.join(temp_dir, 'latest_release.zip')
 
     with open(zip_file, 'wb') as file:
         file.write(response.content)
 
+    # Extract the contents of the zip file
     with zipfile.ZipFile(zip_file, 'r') as zip_ref:
         zip_ref.extractall(temp_dir)
 
+    # Remove the temporary zip file
     os.remove(zip_file)
 
-    # Locate the extracted directory
-    extracted_dir = os.path.join(temp_dir, f"{repo}-main", 'shell')  # Adjust according to your repository structure
-
-    return extracted_dir
+    return temp_dir
 
 # Function to fetch the local commit hash from file
 def get_local_commit_hash():
@@ -90,11 +91,35 @@ def get_latest_commit_hash(owner, repo):
     else:
         return None
 
-if __name__ == "__main__":
+# Main function to run the update check and launch the application
+def main():
     owner = "iNihilistx"  # GitHub owner or organization
     repo = "RascalShell"  # GitHub repository name
 
-    if check_for_updates_logic(owner, repo):
-        print("Update applied.")
-    else:
-        print("No updates applied.")
+    try:
+        retry_attempts = 3
+        retry_delay = 1  # Delay in seconds between retries
+
+        for _ in range(retry_attempts):
+            if check_for_updates_logic(owner, repo):
+                print("Update applied. Restarting application...")
+                # Launch the main application after the update check
+                subprocess.run(["python", "shell/RascalShell-main/shell/portal.py"])
+                return  # Exit function after successful update and launch
+            else:
+                print("No update required. Launching application...")
+                # Launch the main application directly if no updates were applied
+                subprocess.run(["python", "shell/RascalShell-main/shell/portal.py"])
+                return  # Exit function after launching application
+
+            time.sleep(retry_delay)  # Wait before retrying
+
+        else:
+            print(f"Failed after {retry_attempts} retries. Launching application without update...")
+
+    except Exception as e:
+        print(f"Error checking for updates: {e}")
+        print("Launching application without update...")
+
+if __name__ == "__main__":
+    main()
