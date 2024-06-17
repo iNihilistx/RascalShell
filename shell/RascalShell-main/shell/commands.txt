@@ -1,0 +1,10 @@
+Rascal Shells custom commands to work alongside the existing: Unix, Linux and Window commands.
+
+grab:
+- Sends a request to the client, which executes a screenshot command and returns it back to the host. Is bound to the same IP address, but uses a separate port.
+
+gma:
+- Get Mac Address (gma). Grabs the device mac address, formats it to be readable and returns it back to you.
+
+snapshot:
+- Sends a request to the client, which enables the webcam on the device, takes a screenshot and returns it to the host. Is bound to the same IP address, but uses the same port as the grab command
