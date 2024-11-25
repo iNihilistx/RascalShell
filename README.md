@@ -7,7 +7,7 @@
 
 <div>
   <p1>
-  Developed for my Computer Science degrees Final Year Project. This reverse shell does something unique by implementing a command center through the use of the customtkinter library. Packaged along with this shell are two client projects. CLI - Allows for the standard reverse shell functionality for executing commands and flying under the radar. GUI - Allows the shell to function more like a remote machine handler. This project uses a mixture of GUI development, encryption and socket programming using the OOP paradigm.
+  Developed for my Final Year Computer Science Project. This reverse shell does something unique by implementing a command center through the use of the customtkinter library. Packaged along with this shell are two client projects. CLI - Allows for the standard reverse shell functionality for executing commands and flying under the radar. GUI - Allows the shell to function more like a remote machine handler. This project uses a mixture of GUI development, encryption and socket programming using the OOP paradigm.
 
 
 ## ❗ Disclaimer:
